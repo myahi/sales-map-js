@@ -1,0 +1,20 @@
+<ion-header>
+    <ion-navbar>
+      <button ion-button menuToggle>
+          <ion-icon name="menu"></ion-icon>
+          <ion-icon name="seach"></ion-icon>
+        </button>
+      <ion-title>Market map</ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding>
+    <div #map id="map"></div>
+    <ion-fab bottom right>
+      <button color="danger" ion-fab mini class="fab fab-ios fab-ios-danger" (click)="addMarket()">
+      <ion-icon class="fab-close-icon icon icon-ios ion-ios-close" name="close" role="img" aria-label="close"></ion-icon>
+      <span class="button-inner"><ion-icon name="add" role="img" class="icon icon-ios ion-ios-add" aria-label="add"></ion-icon></span>
+      <div class="button-effect"></div>
+      </button>
+    </ion-fab>
+</ion-content>

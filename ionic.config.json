@@ -1,0 +1,8 @@
+{
+  "name": "sales-map-jss",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
