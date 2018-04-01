@@ -6,11 +6,11 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { DataBaseProvider } from '../providers/database/database';
 import { SQLite } from '@ionic-native/sqlite';
-//import { SQLiteMock } from '../pages/add-market/SQLiteMock';
 import { Toast } from '@ionic-native/toast';
 
 import { AddMarketPage } from '../pages/market/add-market';
 import { MarketTabs } from '../pages/market/market-tabs.component';
+import { DataBaseProviderMock } from '../providers/database/data-base-mock';
 
 
 
@@ -34,9 +34,9 @@ import { MarketTabs } from '../pages/market/market-tabs.component';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-   SQLite,
-    DataBaseProvider,
-   // {provide: SQLite, useClass: SQLiteMock},
+   //SQLite,
+    {provide:DataBaseProvider,useClass: DataBaseProviderMock},
+   //{provide: SQLite, useClass: SQLiteMock},
     Toast
   ]
 })

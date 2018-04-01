@@ -18,13 +18,19 @@ export class SalesMap {
   map: any;
   labels: string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   labelIndex = 0;
-  private marketsInMap:Array<MarketModel>=[];
+  
+  infoWindow = new google.maps.InfoWindow();
 
+  
+
+  private marketsInMap:Array<MarketModel>=[];
+  
   constructor(public navCtrl: NavController, public navParams: NavParams,public dataProvider: DataBaseProvider) {
   }
 
+
   ionViewDidLoad() {
-    this.startMap();
+    //this.startMap();
   }
   ionViewWillEnter(){
     this.startMap() ;
@@ -36,7 +42,7 @@ export class SalesMap {
 
     if (newMarkers.length>0){
       newMarkers.forEach(market => {
-        this.addMarker({lat: Number(market.lat), lng: Number(market.lng)},this.map)
+        this.addMarker(market,this.map)
       });
     }
   }
@@ -59,13 +65,14 @@ export class SalesMap {
     let markets = this.dataProvider.getCurrentMarkets();
     this.marketsInMap = markets;
     for (let i = 0; i < markets.length; i++) {
-      alert(markets[i].lat+" : "+markets[i].lng);
-      this.addMarker({lat: Number(markets[i].lat), lng: Number(markets[i].lng)},this.map)
+      //alert(markets[i].lat+" : "+markets[i].lng);
+      this.addMarker(markets[i],this.map)
     }
-    this.getCurrentLocation(this.map);
+    //this.getCurrentLocation(this.map);
+    this.map.setCenter(algerCenter);
   }
   addMarket (){
-    this.navCtrl.push(MarketTabs);
+    this.navCtrl.push(MarketTabs,{});
   }
   getCurrentLocation(map:any):Promise<Position>{
     let currentPosition;
@@ -97,12 +104,40 @@ export class SalesMap {
                               'Error: Your browser doesn\'t support geolocation.');
       }
 
-  addMarker(location, map) {
+  addMarker(market:MarketModel, map) {
+    let marketIcon  = {
+      url: market.marketCategory=="market" ? "../../assets/icon/market.png":"../../assets/icon/super-market.png",
+      // This marker is 20 pixels wide by 32 pixels high.
+      size: new google.maps.Size(32, 32),
+      // The origin for this image is (0, 0).
+      origin: new google.maps.Point(0, 0),
+      // The anchor for this image is the base of the flagpole at (0, 32).
+      anchor: new google.maps.Point(0, 32)
+    };
+    //alert(marketIcon.url);
     let marker = new google.maps.Marker({
-      position: location,
-      label: this.labels[this.labelIndex++ % this.labels.length],
-      map: map
+      position: {lat: Number(market.lat), lng: Number(market.lng)},
+      //label: this.labels[this.labelIndex++ % this.labels.length],
+      icon:marketIcon,
+      map: map,
+      title: market.marketName,
+      address: market.marketAddress
     });
+    let infoWindow = this.infoWindow;
+    marker.addListener('click', function() {
+      infoWindow.close();
+      var div = document.createElement('div');
+      //div.innerHTML = marker.title;
+      div.id="marketInfo";
+      var content = '<div id="iw-container">' +
+      '<div class="firstHeading">' + marker.title +'</div>' +
+      '<div class="iw-content">' + marker.address +'</div></div>';
+      div.innerHTML=content;
+      infoWindow.setContent(div);
+      //infoWindow.setTitle("test");
+      //infoWindow.setContent(marker.title);
+      infoWindow.open(map, marker);
+      div.onclick = function(){alert("hello")};
+    }); 
   }
 }
-
