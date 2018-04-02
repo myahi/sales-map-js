@@ -7,7 +7,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { DataBaseProvider } from '../providers/database/database';
 import { SQLite } from '@ionic-native/sqlite';
 import { Toast } from '@ionic-native/toast';
-
 import { AddMarketPage } from '../pages/market/add-market';
 import { MarketTabs } from '../pages/market/market-tabs.component';
 import { DataBaseProviderMock } from '../providers/database/data-base-mock';

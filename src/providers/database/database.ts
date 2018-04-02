@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { Platform } from 'ionic-angular';
-import { MarketModel } from '../../models/MarketModel';
+import { MarketModel } from '../../models/market-model';
 
 const DATABASE_FILE_NAME: string = 'data.db';
 @Injectable()
 
 export class DataBaseProvider {
   private markets:Array<MarketModel>=[];
+  
   constructor(private sqlite: SQLite,private platform:Platform) {
     platform.ready().then(() => {
       this.createDatabase();

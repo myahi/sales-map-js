@@ -13,6 +13,8 @@ export class MarketModel {
         this.lat = lat;
         this.lng = lng;
         this.marketPhone = marketPhone;
-
+    }
+    toString():string{
+        return "Name: " + this.marketName+", Address:" + this.marketAddress;
     }
 }

@@ -1,5 +1,5 @@
 import { Component, ViewChild, NgModule } from '@angular/core';
-import { Platform, Tabs } from 'ionic-angular';
+import { Platform, Tabs, NavParams } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AddMarketPage } from './add-market';
@@ -14,7 +14,6 @@ export class MarketTabs {
     AddMarketPage
   ]
   tab1Root = AddMarketPage;
-
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,public navParams: NavParams) { 
   }
 }

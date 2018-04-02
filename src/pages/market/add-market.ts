@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DataBaseProvider } from '../../providers/database/database';
 import { Toast } from '@ionic-native/toast';
-import { MarketModel } from '../../models/MarketModel';
+import { MarketModel } from '../../models/market-model';
 //import { SalesMap } from '../map/salesMap';
 
 
