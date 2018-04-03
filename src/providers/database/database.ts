@@ -34,12 +34,12 @@ export class DataBaseProvider {
   }).catch(e => console.log('data base creation exception ' + e.message));
   }
 
-  public addMarket(market): any {
+  public addMarket(market:MarketModel): Promise<MarketModel> {
     let res: any;
     this.getDataBase().then((db: SQLiteObject) => {
     db.executeSql('INSERT INTO MARKETS VALUES (NULL,?,?,?,?,?,?)', [market.marketName,market.marketCategory,market.marketAddress,market.lat,market.lng,market.marketPhone])
-        .then(() => {
-          this.markets.push(new MarketModel(market.marketName,market.marketCategory,market.marketAddress,market.lat,market.lng,market.marketPhone));
+        .then((res) => {
+          this.markets.push(new MarketModel(res,market.marketName,market.marketCategory,market.marketAddress,market.lat,market.lng,market.marketPhone));
           res=market;
         }).catch(e => {
           console.log("market creation exception " + e.message);
@@ -55,7 +55,7 @@ getAllMarkets() :Promise<MarketModel[]>{
     .then(data => {
       if(data != null && data.rows.length > 0) {
         for(var i = 0; i < data.rows.length; i++) {
-          let market = new MarketModel(data.rows.item(i).marketName,data.rows.item(i).marketCategory,data.rows.item(i).marketAddress,data.rows.item(i).lat
+          let market = new MarketModel(data.rows.item(i).rowid,data.rows.item(i).marketName,data.rows.item(i).marketCategory,data.rows.item(i).marketAddress,data.rows.item(i).lat
           ,data.rows.item(i).lng,data.rows.item(i).marketPhone);
           markets.push(market);
         }
@@ -79,7 +79,7 @@ getAllMarkets() :Promise<MarketModel[]>{
 			if(data.rows) {
 				if(data.rows.length > 0) {
 					for(var i = 0; i < data.rows.length; i++) {
-            market = new MarketModel(
+            market = new MarketModel(data.rows.item(0).rowid,
               data.rows.item(0).marketName,data.rows.item(0).marketCategory,data.rows.item(0).marketAddress,data.rows.item(0).lat
               ,data.rows.item(0).lng,data.rows.item(0).marketPhone);
           }

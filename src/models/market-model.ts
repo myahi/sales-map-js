@@ -1,4 +1,5 @@
 export class MarketModel {
+     marketId: number;
      marketName: string;
      marketCategory: string;
      marketAddress: string;
@@ -6,7 +7,8 @@ export class MarketModel {
      lng: string;
      marketPhone :string;
 
-    constructor(marketName: string,marketCategory: string,marketAddress: string,lat:string,lng:string,marketPhone){
+    constructor(marketId: number,marketName: string,marketCategory: string,marketAddress: string,lat:string,lng:string,marketPhone){
+        this.marketId = marketId;
         this.marketName=marketName;
         this.marketCategory=marketCategory;
         this.marketAddress=marketAddress;

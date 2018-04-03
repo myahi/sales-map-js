@@ -18,7 +18,7 @@ export class SalesMap {
   infoWindow = new google.maps.InfoWindow();
   private marketsInMap:Array<MarketModel>=[];
   private items: Array<String>=[];
-  
+  private markers:Array<any>=[];  
   marketIcon  = {
     url: "",
     // This marker is 20 pixels wide by 32 pixels high.
@@ -39,7 +39,7 @@ export class SalesMap {
   }
   ionViewWillEnter(){
     //alert("ionViewWillEnter");
-    //this.startMap() ;
+    this.startMap() ;
   }
 
   updateMarker(){
@@ -83,10 +83,15 @@ export class SalesMap {
                 longpress = (end - start < 500) ? false : true;
             });
     let markets = this.dataProvider.getCurrentMarkets();
+    this.markers=[];
     for (let i = 0; i < markets.length; i++) {
       //alert(markets[i].lat+" : "+markets[i].lng);
       this.addMarker(markets[i],this.map)
     }
+    //var MarkerClusterer:any;
+    //bug connu
+    var markerCluster =new MarkerClusterer(this.map, this.markers,
+      {imagePath: '../../assets/icon/m'});
     this.marketsInMap = markets;
     //this.getCurrentLocation(this.map); 
     this.map.setCenter(algerCenter);
@@ -152,17 +157,18 @@ export class SalesMap {
         }
   }
   addMarker(market:MarketModel, map) {
-    this.marketIcon.url =market.marketCategory=="market" ? "../../assets/icon/market.png":"../../assets/icon/super-market.png";
-    //alert(marketIcon.url);
+    this.marketIcon.url =market.marketCategory=="market" ? "../../assets/icon/market-red.png":"../../assets/icon/market-red.png";
     let marker = new google.maps.Marker({
       position: {lat: Number(market.lat), lng: Number(market.lng)},
       icon:this.marketIcon,
       map: map,
+      marketId:market.marketId,
       title: market.marketName,
       address: market.marketAddress,
     });
     let infoWindow = this.infoWindow;
     let navCtrl = this.navCtrl;
+    this.markers.push(marker);
     marker.addListener('click', function() {
       infoWindow.close();
       var div = document.createElement('div');
@@ -173,7 +179,7 @@ export class SalesMap {
       div.innerHTML=content;
       infoWindow.setContent(div);
       infoWindow.open(map, marker);
-      div.onclick = function(){navCtrl.push(MarketTabs,{})};
+      div.onclick = function(){navCtrl.push(MarketTabs,{marketId:marker.marketId})};
     }); 
   }
 }
