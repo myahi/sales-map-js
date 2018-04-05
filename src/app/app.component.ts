@@ -10,14 +10,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = 'SalesMap';
+  rootPage: any = 'SalesPage';
 
-  pages: Array<{ title: string, component: any }>;
+  pages: Array<{ title: string, component: any,icon :string }>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
     this.pages = [
-      { title: 'Market map', component: 'SalesMap' },
+      { title: 'Market map', component: 'SalesPage',icon:'ios-map-outline' },
+      { title: 'Tours', component: 'ToursPage',icon:'md-car' },
     ];
   }
 

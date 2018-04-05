@@ -1,0 +1,38 @@
+<ion-header>
+    <ion-navbar class="force-back-button">
+            <ion-title>Tour List</ion-title>
+            <button ion-button icon-only menuToggle><ion-icon name="menu"></ion-icon></button>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding>
+<div id="tourList">
+        <ion-list>
+                <ion-card *ngFor="let tour of tours; let i=index" class="cards-list-demo">
+                    <ion-card-content>
+                        <ion-item>
+                        <ion-thumbnail item-start>
+                            <img src='../../assets/icon/van.png'>
+                        </ion-thumbnail>
+                            <h1>{{tour.tourLabel}}</h1>
+                            <h2>Makert: {{tour.markets.length}}</h2>
+                          </ion-item>
+                      </ion-card-content>
+                      <ion-grid>
+                            <ion-row>
+                              <ion-col>
+                                    <ion-chip>
+                                            <ion-label>{{tour.tourDate}}</ion-label>
+                                  </ion-chip>
+                              </ion-col>
+                              <ion-col col-2>
+                                    <button ion-button round icon-only [color]="tour.color">
+                                            <ion-icon [name]="tour.icon"></ion-icon>
+                                      </button>
+                              </ion-col>
+                            </ion-row>
+                          </ion-grid>
+                  </ion-card>
+        </ion-list>
+</div>
+</ion-content>

@@ -1,0 +1,57 @@
+page-sales-list {
+    #marketListFooter{
+        width: 110%;margin-left:-15px;margin-top:-14px;
+    }
+    #marketListFooter .toolbar-background-md{
+        background: rgb(235, 255, 229);
+    }
+    .firstHeading{
+        font-weight:bold;
+    }
+    .item ion-thumbnail {
+        min-width: 64px;
+        min-height: 64px;
+        img {
+            max-width: 64px;
+            min-width: 64px;
+            min-height: 64px;
+            max-height: 64px;
+        }
+    }
+    .makertListItem{
+        padding-left: 0;
+    }
+    #marketListFooter .toolbar-background-md{
+        background: rgb(240, 240, 240);
+    }
+    
+    #footId .toolbar-title-md{
+        color: black;
+    }
+    #list{
+        margin-top: 56px;
+    }
+    .img {
+        height: 70vh !important;
+        width: auto !important;
+        align-items: center;
+    }
+}
+.card-title{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    margin-left: -3%;
+    margin-top: 0%;
+}
+.card-content-md{
+    padding-bottom: 2px;
+    padding-left: 0;
+}
+.card-md{
+    width: 100%;
+    margin-left: -2px;
+}
+.label-md{
+    margin-bottom: 0px;
+}
+

@@ -35,13 +35,16 @@ $app-direction: ltr;
 
 $colors: (
   primary:    #d14836,
-  secondary:  #32db64,
+  //secondary:  #32db64,
+  secondary:  #2b9c4d,
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222
 );
 
 $toolbar-background:#d14836;
+$badge-font-size:16px;
+$badge-font-weight:normal;
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here

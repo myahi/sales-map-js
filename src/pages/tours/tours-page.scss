@@ -1,0 +1,45 @@
+tour-page {
+    #map {
+        height: 100%;
+    }
+    .firstHeading{
+        font-weight:bold;
+    }
+    .item ion-thumbnail {
+        min-width: 64px;
+        min-height: 64px;
+        img {
+            max-width: 64px;
+            min-width: 64px;
+            min-height: 64px;
+            max-height: 64px;
+        }
+    }
+    .makertListItem{
+        padding-left: 0;
+    }
+    .img {
+        height: 70vh !important;
+        width: auto !important;
+        align-items: center;
+    }
+    #tourList > ion-list > ion-grid > ion-row{
+        margin-bottom:-4%
+    }
+    
+}
+
+#tourList > ion-list > ion-card > ion-card-content > ion-item{
+    margin-top:-8%
+}
+
+.card-content-md{
+    padding-bottom: 2px;
+    padding-left: 0;
+}
+.card-md{
+    width: 100%;
+}
+.label-md{
+    margin-bottom: 0px;
+}

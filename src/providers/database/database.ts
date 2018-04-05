@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { SQLite, SQLiteObject } from '@ionic-native/sqlite';
 import { Platform } from 'ionic-angular';
 import { MarketModel } from '../../models/market-model';
+import { TourModel } from '../../models/tour-model';
 
 const DATABASE_FILE_NAME: string = 'data.db';
 @Injectable()
@@ -34,7 +35,7 @@ export class DataBaseProvider {
   }).catch(e => console.log('data base creation exception ' + e.message));
   }
 
-  public addMarket(market:MarketModel): Promise<MarketModel> {
+  public addMarket(market:MarketModel): any {
     let res: any;
     this.getDataBase().then((db: SQLiteObject) => {
     db.executeSql('INSERT INTO MARKETS VALUES (NULL,?,?,?,?,?,?)', [market.marketName,market.marketCategory,market.marketAddress,market.lat,market.lng,market.marketPhone])
@@ -102,5 +103,13 @@ getAllMarkets() :Promise<MarketModel[]>{
         .catch(e => {
           console.log(e);
         });
+  }
+  public getTour(): Promise<TourModel>{
+    //to be implemented
+    return Promise.resolve(null);
+  }
+  public getTours(): Promise<TourModel[]>{
+    //to be implemented
+    return Promise.resolve(null);
   }
 }
